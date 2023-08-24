@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::LanguageExtensions"
+Parameters:
+  pInstanceIds:
+    Type: CommaDelimitedList
+Resources:
+  "Fn::ForEach::Buckets":
+    - Name
+    - !Ref pInstanceIds
+    - "Bucket${Name}":
+        Type: "AWS::S3::Bucket"
+        Properties:
+          BucketName: !Ref Name
